@@ -64,7 +64,14 @@ class MyRobot(wpilib.SampleRobot):
 
     def autonomous(self):
 
-        pass
+        self.autoTimer = self.timer.getMsClock()
+
+        if self.autoTimer > 2:
+            self.lotusWinch.set(-0.5)
+        elif self.autoTimer > 3:
+            self.lotusWinch.set(1)
+        else:
+            self.lotusWinch.set(0)
 
     def operatorControl(self):
         # Runs the motors with Mecanum drive.
