@@ -1,13 +1,12 @@
 #!/usr/bin/env python3
-
-# This is a demo program showing how to use Mecanum control with the
-# MecanumDrive class.
-
+# added detail for test
+# second added detail for test
+import ctre
 import navx
 import wpilib
-from wpilib.drive import MecanumDrive
 import wpilib.buttons
-import ctre
+from wpilib.drive import MecanumDrive
+
 
 class MyRobot(wpilib.SampleRobot):
     # Channels on the roboRIO that the motor controllers are plugged in to
@@ -63,6 +62,10 @@ class MyRobot(wpilib.SampleRobot):
 
         self.drive.setExpiration(0.1)
 
+    def autonomous(self):
+
+        pass
+
     def operatorControl(self):
         # Runs the motors with Mecanum drive.
         # if self.functStick.getRawButton(3):
@@ -73,7 +76,7 @@ class MyRobot(wpilib.SampleRobot):
         else:
             self.driveStick = wpilib.Joystick(self.joystickChannel)
             self.functStick = wpilib.Joystick(self.functStickChannel)
-        
+
         self.drive.setSafetyEnabled(True)
         while self.isOperatorControl() and self.isEnabled():
 
@@ -102,13 +105,13 @@ class MyRobot(wpilib.SampleRobot):
             else:
                 self.drive.driveCartesian(
                     self.driveStick.getX() * (
-                                -self.driveStick.getThrottle() + 1)
+                            -self.driveStick.getThrottle() + 1)
                     / 2,
                     -self.driveStick.getY() * (
-                                -self.driveStick.getThrottle() + 1)
+                            -self.driveStick.getThrottle() + 1)
                     / 2,
                     self.driveStick.getZ() * (
-                                -self.driveStick.getThrottle() + 1) / 2
+                            -self.driveStick.getThrottle() + 1) / 2
                 )
 
             # if self.stick.getRawButton(6):
@@ -133,17 +136,17 @@ class MyRobot(wpilib.SampleRobot):
             if self.functStick.getRawButton(5):
                 self.CargoIntake1.set(ctre.ControlMode.PercentOutput,
                                       1 * (
-                                                  self.functStick.getThrottle() + 1) / 2)
+                                              self.functStick.getThrottle() + 1) / 2)
                 self.CargoIntake2.set(ctre.ControlMode.PercentOutput,
                                       -1 * (
-                                                  self.functStick.getThrottle() + 1) / 2)
+                                              self.functStick.getThrottle() + 1) / 2)
             elif self.functStick.getRawButton(6):
                 self.CargoIntake1.set(ctre.ControlMode.PercentOutput,
                                       -1 * (
-                                                  -self.functStick.getThrottle() + 1) / 2)
+                                              -self.functStick.getThrottle() + 1) / 2)
                 self.CargoIntake2.set(ctre.ControlMode.PercentOutput,
                                       1 * (
-                                                  -self.functStick.getThrottle() + 1) / 2)
+                                              -self.functStick.getThrottle() + 1) / 2)
             else:
                 self.CargoIntake1.set(ctre.ControlMode.PercentOutput, 0)
                 self.CargoIntake2.set(ctre.ControlMode.PercentOutput, 0)
@@ -171,4 +174,3 @@ class MyRobot(wpilib.SampleRobot):
 
 if __name__ == '__main__':
     wpilib.run(MyRobot)
-
