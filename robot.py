@@ -62,16 +62,16 @@ class MyRobot(wpilib.SampleRobot):
 
         self.drive.setExpiration(0.1)
 
-    def autonomous(self):
-
-        self.autoTimer = self.timer.getMsClock()
-
-        if self.autoTimer > 2:
-            self.lotusWinch.set(-0.5)
-        elif self.autoTimer > 3:
-            self.lotusWinch.set(1)
-        else:
-            self.lotusWinch.set(0)
+    # def autonomous(self):
+    #
+    #     self.autoTimer = self.timer.getMsClock()
+    #
+    #     if self.autoTimer > 2:
+    #         self.lotusWinch.set(-0.5)
+    #     elif self.autoTimer > 3:
+    #         self.lotusWinch.set(1)
+    #     else:
+    #         self.lotusWinch.set(0)
 
     def operatorControl(self):
         # Runs the motors with Mecanum drive.
@@ -79,10 +79,8 @@ class MyRobot(wpilib.SampleRobot):
         #     self.driveStick = 0
         if self.functStick.getRawButton(4):
             self.driveStick = 0
-
         else:
             self.driveStick = wpilib.Joystick(self.joystickChannel)
-            self.functStick = wpilib.Joystick(self.functStickChannel)
 
         self.drive.setSafetyEnabled(True)
         while self.isOperatorControl() and self.isEnabled():
