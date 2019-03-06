@@ -1,11 +1,9 @@
 #!/usr/bin/env python3
-# random change to commit
 import ctre
 import navx
 import wpilib
 import wpilib.buttons
 from wpilib.drive import MecanumDrive
-from robotpy_ext import autonomous
 
 
 class MyRobot(wpilib.SampleRobot):
